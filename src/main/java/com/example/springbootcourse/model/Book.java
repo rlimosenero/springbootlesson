@@ -1,41 +1,71 @@
 package com.example.springbootcourse.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Component
+@Entity
+@Table(name = "books")
 public class Book {
 	
-	private String name;
-	private String author;
-	private String type;
-	
-	public Book() {}
-	
-	public Book(String name, String author, String type) {
-		super();
-		this.name = name;
-		this.author = author;
-		this.type = type;
-	}
 
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+		@Id
+		@GeneratedValue(strategy = GenerationType.AUTO)
+		private long id;
+
+		@Column(name = "title")
+		private String title;
+
+		@Column(name = "description")
+		private String description;
+
+		@Column(name = "published")
+		private boolean published;
+
+		public Book() {
+
+		}
+
+		public Book(String title, String description, boolean published) {
+			this.title = title;
+			this.description = description;
+			this.published = published;
+		}
+
+		public long getId() {
+			return id;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public boolean isPublished() {
+			return published;
+		}
+
+		public void setPublished(boolean isPublished) {
+			this.published = isPublished;
+		}
+
+		@Override
+		public String toString() {
+			return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
+		}
 
 }
